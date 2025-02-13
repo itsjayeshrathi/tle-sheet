@@ -1,25 +1,33 @@
 #include <bits/stdc++.h>
-
-#define ll long long
-#define endl " \n";
-
 using namespace std;
 
 void solve()
 {
-    ll t;
+    int t;
     cin >> t;
     while (t--)
     {
-        ll n, k;
-        cin >> n >> k;
-        if (n % 2 == 0)
+        int n;
+        cin >> n;
+        int x;
+        map<int, int> mp;
+
+        for (int i = 0; i < n; i++)
         {
-            cout << "Yes" << endl;
+
+            cin >> x;
+            mp[x]++;
+        }
+
+        if (mp.size() > 2)
+        {
+            cout << "No" << endl;
         }
         else
         {
-            if (k % 2 != 0)
+            auto it = mp.begin();
+
+            if (mp.size() == 1 || abs(it->second - next(it)->second) <= 1)
             {
                 cout << "Yes" << endl;
             }
