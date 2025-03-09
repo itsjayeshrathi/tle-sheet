@@ -1,17 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template <typename T>
-
-void print(vector<T> x)
-{
-    for (auto i : x)
-    {
-        cout << i << " ";
-    }
-    cout << endl;
-}
-
 void solve()
 {
     int t;
@@ -20,34 +9,45 @@ void solve()
     {
         int n;
         cin >> n;
+
         vector<long long> arr(n);
-        vector<long long> a;
-        vector<long long> b;
+        map<long long, long long> mp;
+        bool is_first = true;
+
         for (int i = 0; i < n; i++)
         {
             cin >> arr[i];
-            if (i % 2 == 0)
+            mp[arr[i]]++;
+        }
+
+        if (mp.size() == 1)
+        {
+            cout << -1 << endl;
+        }
+
+        for (auto it : mp)
+        {
+            long long first = it.first;
+            long long second = it.second;
+
+            cout << it.second << " " << (n - it.second) << endl;
+
+            if (is_first)
             {
-                a.push_back(arr[i]);
+                for (int i = 0; i < second; i++)
+                {
+                    cout << first << " ";
+                }
+                cout << endl;
+                is_first = false;
             }
             else
             {
-                if (a[i - 1] % arr[i] != 0)
+                for (int i = 0; i < second; i++)
                 {
-                    b.push_back(arr[i]);
+                    cout << first << " ";
                 }
             }
-        }
-        if (b.empty())
-        {
-            cout << -1 << endl;
-            continue;
-        }
-        else
-        {
-            cout << a.size() << " " << b.size() << endl;
-            print(a);
-            print(b);
         }
     }
 }

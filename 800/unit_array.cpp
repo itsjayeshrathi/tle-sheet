@@ -8,6 +8,7 @@ void solve()
     while (t--)
     {
         int n;
+        cin >> n;
         vector<int> arr(n);
         int one_count = 0;
         int neg_one_count = 0;
@@ -17,14 +18,35 @@ void solve()
             cin >> arr[i];
             (arr[i] == 1) ? one_count++ : neg_one_count++;
         }
-        if (one_count > neg_one_count && neg_one_count % 2 == 0)
+
+        if (neg_one_count % 2 == 0 && one_count >= neg_one_count)
         {
-            cout << min_count << endl;
+            cout << 0 << endl;
         }
         else
         {
-            int diff = abs(one_count - neg_one_count);
-          
+            if (neg_one_count > one_count)
+            {
+
+                while (!(one_count >= neg_one_count && neg_one_count % 2 == 0))
+                {
+
+                    one_count++;
+                    neg_one_count--;
+                    min_count++;
+                }
+            }
+            else
+            {
+                while (!(neg_one_count % 2 == 0 && one_count >= neg_one_count))
+                {
+                    neg_one_count++;
+                    one_count--;
+                    min_count++;
+                }
+            }
+
+            cout << min_count << endl;
         }
     }
 }
